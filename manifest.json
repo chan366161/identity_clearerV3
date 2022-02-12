@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "Identity Clearer V3",
+  "version": "0.1",
+  "description": "purge ID Entry in cookies",
+  "icons": { "16": "images/dark_cookie_16.png", "32": "images/dark_cookie_32.png", "128": "images/dark_cookie_128.png" },
+
+  "action": {
+    "default_icon": { "16": "images/light_cookie_16.png", "32": "images/light_cookie_32.png", "128": "images/light_cookie_128.png" },
+    "default_title": "Identity Clearer is suspended"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+    "content_scripts": [
+    {
+    "matches": ["*://*/*"],
+    "all_frames": true,
+    "js": ["script/contentScript.js"],
+    "run_at" : "document_end"
+    }
+  ],
+  "incognito": "spanning",
+  "offline_enabled": false,
+  "permissions": [
+  "scripting",
+  "activeTab",
+  "storage",
+  "cookies"],
+  "host_permissions": [
+    "*://*/*"
+  ],
+    "web_accessible_resources": [{
+      "resources" : [
+        "images/*.png",
+        "style/*.css",
+        "script/*.js"
+      ],
+      "matches" : ["*://*/*"]
+    }
+  ]
+}
